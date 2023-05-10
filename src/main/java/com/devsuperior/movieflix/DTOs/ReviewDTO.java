@@ -13,6 +13,7 @@ public class ReviewDTO implements Serializable {
     private String text;
     private UserDTO user;
     private Long movieId;
+    private Double score;
 
     public ReviewDTO() {
     }
@@ -61,6 +62,14 @@ public class ReviewDTO implements Serializable {
 
     public void setMovieId(Long movieId) {
         this.movieId = movieId;
+    }
+
+    public Double getScore() {
+        return score;
+    }
+
+    public void setScore(Double score) {
+        this.score = score;
     }
 
     @Override

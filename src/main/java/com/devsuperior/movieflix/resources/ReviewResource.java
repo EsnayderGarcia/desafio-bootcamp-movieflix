@@ -21,6 +21,6 @@ public class ReviewResource {
     @PreAuthorize("hasRole('MEMBER')")
     @PostMapping
     public ResponseEntity<ReviewDTO> save(@RequestBody @Valid ReviewDTO reviewDTO) {
-        return new ResponseEntity<ReviewDTO>(reviewService.save(reviewDTO), HttpStatus.CREATED);
+        return new ResponseEntity<>(reviewService.save(reviewDTO), HttpStatus.CREATED);
     }
 }

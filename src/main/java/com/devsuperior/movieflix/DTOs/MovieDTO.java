@@ -14,7 +14,8 @@ public class MovieDTO {
     private String imgUrl;
     private String synopsis;
     private GenreDTO genre;
-    private final List<ReviewDTO> reviwes = new ArrayList<>();
+    private Double score;
+    private final List<ReviewDTO> reviews = new ArrayList<>();
 
     public MovieDTO(Movie movie) {
         id = movie.getId();
@@ -23,6 +24,7 @@ public class MovieDTO {
         year = movie.getYear();
         imgUrl = movie.getImgUrl();
         synopsis = movie.getSynopsis();
+        score = movie.getScore();
         genre = new GenreDTO(movie.getGenre());
     }
 
@@ -82,8 +84,16 @@ public class MovieDTO {
         this.genre = genre;
     }
 
-    public List<ReviewDTO> getReviwes() {
-        return reviwes;
+    public Double getScore() {
+        return score;
+    }
+
+    public void setScore(Double score) {
+        this.score = score;
+    }
+
+    public List<ReviewDTO> getReviews() {
+        return reviews;
     }
 
     @Override

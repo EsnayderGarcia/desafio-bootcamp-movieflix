@@ -5,10 +5,10 @@ import com.devsuperior.movieflix.entities.Genre;
 import com.devsuperior.movieflix.entities.Movie;
 import com.devsuperior.movieflix.repositories.GenreRepository;
 import com.devsuperior.movieflix.repositories.MovieRepository;
+import com.devsuperior.movieflix.repositories.ScoreRepository;
 import com.devsuperior.movieflix.services.exceptions.ResourceNotFoundException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,10 +16,12 @@ import org.springframework.transaction.annotation.Transactional;
 public class MovieService {
     private final MovieRepository movieRepository;
     private final GenreRepository genreRepository;
+    private final ScoreRepository scoreRepository;
 
-    public MovieService(MovieRepository movieRepository, GenreRepository genreRepository) {
+    public MovieService(MovieRepository movieRepository, GenreRepository genreRepository, ScoreRepository scoreRepository) {
         this.movieRepository = movieRepository;
         this.genreRepository = genreRepository;
+        this.scoreRepository = scoreRepository;
     }
 
     @Transactional(readOnly = true)
@@ -34,3 +36,11 @@ public class MovieService {
         return movieRepository.findMovies(genre, pageable).map(MovieDTO::new);
     }
 }
+
+
+
+
+
+
+
+

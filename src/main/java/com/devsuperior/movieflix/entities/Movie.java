@@ -20,6 +20,8 @@ public class Movie implements Serializable {
 
     private String imgUrl;
 
+    private Double score;
+
     @Column(columnDefinition = "text")
     private String synopsis;
 
@@ -89,4 +91,15 @@ public class Movie implements Serializable {
     public List<Review> getReviews() {
         return reviews;
     }
+
+    public Double getScore() {
+        return score;
+    }
+
+    public void setScore(Double score) {
+        this.score = score;
+    }
 }
+
+
+
