@@ -1,6 +1,7 @@
 package com.devsuperior.movieflix.resources;
 
 import com.devsuperior.movieflix.DTOs.ReviewDTO;
+import com.devsuperior.movieflix.DTOs.ReviewResponseDTO;
 import com.devsuperior.movieflix.services.ReviewService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,5 +23,11 @@ public class ReviewResource {
     @PostMapping
     public ResponseEntity<ReviewDTO> save(@RequestBody @Valid ReviewDTO reviewDTO) {
         return new ResponseEntity<>(reviewService.save(reviewDTO), HttpStatus.CREATED);
+    }
+
+    @PreAuthorize("hasRole('MEMBER')")
+    @PutMapping("/{reviewId}")
+    public ResponseEntity<ReviewDTO> update(@RequestBody @Valid ReviewDTO reviewDTO, @PathVariable Long reviewId) {
+        return ResponseEntity.ok(reviewService.update(reviewDTO, reviewId));
     }
 }

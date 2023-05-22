@@ -1,10 +1,11 @@
- package com.devsuperior.movieflix.entities;
+package com.devsuperior.movieflix.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @Entity
-@Table(name="tb_review")
+@Table(name = "tb_review")
 public class Review implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,8 +18,10 @@ public class Review implements Serializable {
     private User user;
 
     @ManyToOne
-    @JoinColumn(name="movie_id")
+    @JoinColumn(name = "movie_id")
     private Movie movie;
+
+    private LocalDateTime postMoment;
 
     public Long getId() {
         return id;
@@ -50,5 +53,23 @@ public class Review implements Serializable {
 
     public void setMovie(Movie movie) {
         this.movie = movie;
+    }
+
+    public LocalDateTime getPostMoment() {
+        return postMoment;
+    }
+
+    public void setPostMoment(LocalDateTime postMoment) {
+        this.postMoment = postMoment;
+    }
+
+    @PrePersist
+    public void prePersist() {
+        postMoment = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        postMoment = LocalDateTime.now();
     }
 }

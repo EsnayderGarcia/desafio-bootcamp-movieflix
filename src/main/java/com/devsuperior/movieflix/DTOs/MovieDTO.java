@@ -1,6 +1,7 @@
 package com.devsuperior.movieflix.DTOs;
 
 import com.devsuperior.movieflix.entities.Movie;
+import com.devsuperior.movieflix.entities.Review;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +26,13 @@ public class MovieDTO {
         imgUrl = movie.getImgUrl();
         synopsis = movie.getSynopsis();
         score = movie.getScore();
+
         genre = new GenreDTO(movie.getGenre());
+    }
+
+    public MovieDTO(Movie movie, List<Review> reviews) {
+        this(movie);
+        reviews.stream().forEach(r -> this.reviews.add(new ReviewDTO(r)));
     }
 
     public Long getId() {

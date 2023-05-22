@@ -35,6 +35,13 @@ public class MovieService {
         Genre genre = genreId == 0 ? null : genreRepository.getOne(genreId);
         return movieRepository.findMovies(genre, pageable).map(MovieDTO::new);
     }
+
+    @Transactional(readOnly = true)
+    public MovieDTO findReviewsByMovie(Long movieId) {
+        Movie movie = movieRepository.findById(movieId)
+                .orElseThrow(() -> new ResourceNotFoundException("Filme informado não encontrado!"));
+        return new MovieDTO(movie, movie.getReviews());
+    }
 }
 
 

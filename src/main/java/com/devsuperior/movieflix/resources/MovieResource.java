@@ -21,6 +21,11 @@ public class MovieResource {
         return ResponseEntity.ok().body(movieService.findById(id));
     }
 
+    @GetMapping("/{movieId}/reviews")
+    private ResponseEntity<MovieDTO> findReviewsByMovie(@PathVariable Long movieId) {
+        return ResponseEntity.ok().body(movieService.findReviewsByMovie(movieId));
+    }
+
     @GetMapping
     private ResponseEntity<Page<MovieDTO>> findMovies(@RequestParam(defaultValue = "0") Long genreId, Pageable pageable) {
         return ResponseEntity.ok().body(movieService.findMovies(genreId, pageable));
